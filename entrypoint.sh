@@ -4,7 +4,6 @@ output_name () {
 	: '
 	arguments:
 		1- filepath (from find_files)
-
 	checks out_dir if empty or not
 		- if empty, returns :
 			dirname + filename + `.min` + file_extension
@@ -12,7 +11,6 @@ output_name () {
 		- if not empty, returns:
 			out_dir + sub_dir + filename + `.min` + file_extension
 			eg: /min_js/ + /a/ + main + .min + .js
-
 	> note : sub_dir = dirname $1 - in_path
 	'
 	f_name=$( basename $1 | grep -oP '^.*(?=\.)' )
@@ -35,23 +33,19 @@ output_name () {
 		mkdir -p $f_path
 	fi
 
-	echo "$f_path/$f_name$f_extn" | xargs readlink -m
+	echo "$f_path/$f_name.min$f_extn" | xargs readlink -m
 }
 
 find_files () {
 	: '
 	arguments:
 		1- js | css (supported file extension)
-
 	find all files of certain type inside in_dir
 		- `find` returns the relative path, which is needed
 		- `*` acts as a recursive operator
-
 	Piped into grep to get all non minified files
-
 	optional parameters:
 		- `-maxdepth`
-
 	Clear all optional parameter keys in case the values are empty
 	So, when appended to the command parameters, no error is caused
 	'
@@ -63,7 +57,7 @@ find_files () {
 		MAXDEPTH_KEY=""
 	fi
 
-	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f -name "*.$1" | grep -v ".$1$"
+	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f -name "*.$1" | grep -v ".min.$1$"
 }
 
 exec_minify_js () {
@@ -71,7 +65,6 @@ exec_minify_js () {
 	arguments:
 		1- input file
 		2- output file
-
 	returns the command needed to minify the js file
 	based on the requested JavaScript Engine in the
 	input `js_engine` 
@@ -93,7 +86,6 @@ exec_minify_cmd () {
 	arguments: 
 		1- input file
 		2- output file
-
 	returns the command needed to minify the file
 	depending on what type the file is (its extension)
 	'
@@ -111,7 +103,6 @@ minify_file () {
 	: '
 	arguments:
 		1- input file
-
 	checks the file type (whether css or js)
 	then creates the output file of that file
 	then minifies the file with a specific command
