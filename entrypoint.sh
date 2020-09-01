@@ -33,7 +33,7 @@ output_name () {
 		mkdir -p $f_path
 	fi
 
-	echo "$f_path/$f_name.min$f_extn" | xargs readlink -m
+	echo "$f_path/$f_name$f_extn" | xargs readlink -m
 }
 
 find_files () {
