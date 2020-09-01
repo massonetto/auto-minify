@@ -1,7 +1,7 @@
 {
 	"name": "auto-minify",
-	"repository": "nizarmah/auto-minify",
-	"homepage": "https://github.com/nizarmah/auto-minify/",
+	"repository": "massonetto/auto-minify",
+	"homepage": "https://github.com/massonetto/auto-minify/",
 	"dependencies": {
 		"uglify-js": "^3.10.0",
 		"babel-minify": "^0.5.1",
