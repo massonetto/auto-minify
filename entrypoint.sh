@@ -35,7 +35,7 @@ output_name () {
 		mkdir -p $f_path
 	fi
 
-	echo "$f_path/$f_name.min$f_extn" | xargs readlink -m
+	echo "$f_path/$f_name$f_extn" | xargs readlink -m
 }
 
 find_files () {
@@ -63,7 +63,7 @@ find_files () {
 		MAXDEPTH_KEY=""
 	fi
 
-	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f -name "*.$1" | grep -v ".min.$1$"
+	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f -name "*.$1" | grep -v ".$1$"
 }
 
 exec_minify_js () {
