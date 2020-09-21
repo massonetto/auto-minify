@@ -57,7 +57,7 @@ find_files () {
 		MAXDEPTH_KEY=""
 	fi
 
-	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f -name "*.$1" | grep -v ".min.$1$"
+	find $in_dir ${MAXDEPTH_KEY} ${MAXDEPTH_VAL} -type f ! -name "*no-minify*" -name "*.$1" | grep -v ".min.$1$"
 }
 
 exec_minify_js () {
